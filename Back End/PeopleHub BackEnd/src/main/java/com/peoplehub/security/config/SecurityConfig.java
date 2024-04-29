@@ -40,7 +40,7 @@ public class SecurityConfig {
 		@Bean
 		public SecurityFilterChain authorizationConfig(HttpSecurity http)throws Exception{
 			http.csrf((csrf)->csrf.disable()).authorizeHttpRequests((authorizeHttpRequests)->authorizeHttpRequests.
-					requestMatchers("/loginpage","/auth").permitAll()).sessionManagement((session)->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+					requestMatchers("/loginpage","/auth","/swagger-ui/index").permitAll()).sessionManagement((session)->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authenticationProvider(authenticationProvider()).addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 		
 			return http.build();

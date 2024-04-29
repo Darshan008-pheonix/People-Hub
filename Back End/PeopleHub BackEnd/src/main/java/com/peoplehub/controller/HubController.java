@@ -8,6 +8,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,7 @@ import com.peoplehub.exception.InvalidCredentailsException;
 import com.peoplehub.exception.InvalidOtpException;
 import com.peoplehub.security.service.JwtService;
 import com.peoplehub.service.HubService;
-
+@CrossOrigin
 @RestController
 public class HubController {
 
@@ -32,6 +33,7 @@ public class HubController {
 	
 	@GetMapping("loginpage")
 	ResponseEntity Login(@RequestHeader String value,@RequestHeader String password) {
+		System.out.println(value+" "+password);
 		return new ResponseEntity<>(hubService.Login(value, password),HttpStatus.OK);
 	}
 	
